@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ══════════════════════════════════════════
+    HOW TO USE THIS TEMPLATE
+    Search for "✏️ EDIT" — every line you need
+    to change is marked with that label.
+    You only need to edit this one file!
+  ══════════════════════════════════════════ -->
+
+  <!-- ✏️ EDIT: Change to your name and role -->
+  <title>Your Name | PhD Student</title>
+  <meta name="description" content="Academic homepage of Your Name">
+
+  <style>
+    /* ─── Design tokens ─────────────────────── */
+    :root {
+      --navy:   #1a2e4a;
+      --teal:   #0ea5e9;
+      --green:  #22c55e;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --text:   #1e293b;
+      --muted:  #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.06);
+    }
+
+    /* ─── Reset ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ─── Navigation ─────────────────────────── */
+    nav {
+      background: var(--navy);
+      position: sticky; top: 0; z-index: 100;
+      height: 54px;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+    .nav-name {
+      color: #fff; font-weight: 600; font-size: 1rem;
+      letter-spacing: .02em; white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: .15rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.72); text-decoration: none;
+      padding: .35rem .7rem; border-radius: 5px;
+      font-size: .875rem; transition: all .18s;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.12); }
+
+    /* ─── Hero ───────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 3.5rem 2rem 3rem;
+    }
+    .hero-inner {
+      max-width: 840px; margin: 0 auto;
+      display: flex; gap: 2.5rem; align-items: center;
+    }
+
+    /* Profile photo — shows initials if no photo is set */
+    .avatar {
+      width: 130px; height: 130px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 3px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem; font-weight: 700; color: #fff;
+      overflow: hidden;
+    }
+    /* If you add a photo: uncomment and set src in the <img> below */
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .hero-text h1 { font-size: 2.3rem; font-weight: 700; color: #fff; }
+    .hero-text .position { font-size: 1.05rem; color: var(--teal); font-weight: 500; margin-top: .25rem; }
+    .hero-text .university { font-size: .9rem; color: rgba(255,255,255,.6); margin-top: .2rem; }
+
+    .hero-links { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+    .hero-links a {
+      display: inline-flex; align-items: center; gap: .35rem;
+      padding: .35rem .85rem; border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.28);
+      color: rgba(255,255,255,.82); text-decoration: none;
+      font-size: .825rem; transition: all .18s;
+    }
+    .hero-links a:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.5); }
+
+    /* ─── Main layout ────────────────────────── */
+    main { max-width: 840px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+    section { margin-bottom: 3rem; }
+
+    h2 {
+      font-size: 1.4rem; font-weight: 700; color: var(--navy);
+      padding-bottom: .45rem;
+      border-bottom: 2.5px solid var(--teal);
+      display: inline-block;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── About ──────────────────────────────── */
+    .about-text { font-size: .98rem; line-height: 1.8; }
+    .about-text strong { color: var(--navy); }
+
+    /* ─── Research tags ──────────────────────── */
+    .tags { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .tag {
+      padding: .38rem .85rem; border-radius: 20px;
+      font-size: .875rem; border: 1px solid var(--border);
+      background: var(--white); box-shadow: var(--shadow);
+    }
+    .tag.primary { background: var(--teal); border-color: var(--teal); color: #fff; font-weight: 500; }
+
+    /* ─── Publications ───────────────────────── */
+    .pub-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .pub-item {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1rem 1.2rem;
+      box-shadow: var(--shadow);
+      display: flex; gap: .9rem; align-items: flex-start;
+    }
+    .pub-year {
+      background: var(--navy); color: #fff;
+      font-size: .7rem; font-weight: 700;
+      padding: .22rem .45rem; border-radius: 4px;
+      flex-shrink: 0; margin-top: .2rem;
+    }
+    .pub-title { font-weight: 600; font-size: .93rem; margin-bottom: .15rem; }
+    .pub-authors { font-size: .83rem; color: var(--muted); margin-bottom: .1rem; }
+    .pub-venue { font-size: .83rem; color: var(--muted); font-style: italic; }
+    .pub-links { margin-top: .4rem; display: flex; gap: .6rem; }
+    .pub-links a {
+      font-size: .78rem; font-weight: 600;
+      color: var(--teal); text-decoration: none;
+      padding: .15rem .45rem; border: 1px solid var(--teal);
+      border-radius: 4px; transition: all .15s;
+    }
+    .pub-links a:hover { background: var(--teal); color: #fff; }
+
+    /* ─── Projects ───────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: .85rem;
+    }
+    .project-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1rem 1.15rem;
+      box-shadow: var(--shadow); text-decoration: none; color: inherit;
+      display: block; transition: box-shadow .2s, transform .2s;
+    }
+    .project-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,.12); transform: translateY(-2px); }
+    .project-name { font-weight: 600; font-size: .92rem; color: var(--teal); margin-bottom: .35rem; }
+    .project-desc { font-size: .84rem; color: var(--muted); line-height: 1.55; }
+    .project-lang { margin-top: .6rem; font-size: .77rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+    /* ─── Contact ────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: .75rem;
+    }
+    .contact-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: .9rem 1rem; box-shadow: var(--shadow);
+    }
+    .contact-label {
+      font-size: .7rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .07em; margin-bottom: .25rem;
+    }
+    .contact-value { font-size: .9rem; font-weight: 500; }
+    .contact-value a { color: var(--teal); text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+
+    /* ─── Footer ─────────────────────────────── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.45);
+      text-align: center; padding: 1.5rem 2rem;
+      font-size: .83rem;
+    }
+    footer a { color: rgba(255,255,255,.65); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ─── Responsive ─────────────────────────── */
+    @media (max-width: 580px) {
+      .hero-inner   { flex-direction: column; text-align: center; gap: 1.4rem; }
+      .hero-links   { justify-content: center; }
+      .avatar       { width: 100px; height: 100px; font-size: 2.1rem; }
+      .hero-text h1 { font-size: 1.85rem; }
+      .nav-links    { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<nav>
+  <!-- ✏️ EDIT: Your name -->
+  <span class="nav-name">Your Name</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+
+    <div class="avatar">
+      <!-- Option A: Initials (default) -->
+      <!-- ✏️ EDIT: Replace "YN" with your initials -->
+      YN
+
+      <!-- Option B: Photo — delete the "YN" above and uncomment this:
+      <img src="assets/photo.jpg" alt="Your Name">
+      Then upload your photo as assets/photo.jpg to the repo. -->
+    </div>
+
+    <div class="hero-text">
+      <!-- ✏️ EDIT: Your full name -->
+      <h1>Your Name</h1>
+      <!-- ✏️ EDIT: Your degree and department -->
+      <p class="position">PhD Student · Department of Geography</p>
+      <!-- ✏️ EDIT: Your university and advisor -->
+      <p class="university">Your University &nbsp;·&nbsp; Advisor: Prof. Your Advisor</p>
+
+      <div class="hero-links">
+        <!-- ✏️ EDIT: Update each href. Delete any you don't use. -->
+        <a href="mailto:you@university.edu">✉ Email</a>
+        <a href="https://github.com/your-username" target="_blank">⌥ GitHub</a>
+        <a href="https://scholar.google.com/citations?user=XXXXXXX" target="_blank">◎ Google Scholar</a>
+        <a href="https://twitter.com/your-handle" target="_blank">𝕏 Twitter</a>
+        <a href="assets/cv.pdf" target="_blank">↓ CV</a>
+        <!-- To add a CV: upload your CV as assets/cv.pdf to the repo -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+<main>
+
+  <!-- ─── About ─── -->
+  <section id="about">
+    <h2>About Me</h2>
+    <!-- ✏️ EDIT: Write 2–3 sentences about yourself -->
+    <p class="about-text">
+      I am a PhD student in the Department of Geography at [Your University], advised by
+      Prof. [Your Advisor]. My research lies at the intersection of
+      <strong>GIScience</strong>, <strong>remote sensing</strong>, and
+      <strong>machine learning</strong>, with a focus on [your specific topic].
+      I am broadly interested in how geospatial AI can help us better understand
+      and respond to [your application domain, e.g., natural hazards / urban change / climate].
+    </p>
+  </section>
+
+  <!-- ─── Research Interests ─── -->
+  <section id="research">
+    <h2>Research Interests</h2>
+    <div class="tags">
+      <!-- ✏️ EDIT: Replace with your actual research areas.
+           "primary" class = filled teal chip (use for your main 2-3 areas).
+           Remove or add <span> tags freely. -->
+      <span class="tag primary">GIScience</span>
+      <span class="tag primary">GeoAI</span>
+      <span class="tag primary">Remote Sensing</span>
+      <span class="tag">Deep Learning</span>
+      <span class="tag">Natural Hazards</span>
+      <span class="tag">Disaster Resilience</span>
+      <span class="tag">Spatial Analysis</span>
+      <span class="tag">Urban Computing</span>
+      <span class="tag">Foundation Models</span>
+    </div>
+  </section>
+
+  <!-- ─── Publications ─── -->
+  <section id="publications">
+    <h2>Publications</h2>
+    <ul class="pub-list">
+
+      <!-- ✏️ EDIT: Replace with your actual papers.
+           Copy this <li> block to add more publications. -->
+      <li class="pub-item">
+        <span class="pub-year">2025</span>
+        <div>
+          <div class="pub-title">
+            Your Paper Title: A Descriptive Subtitle About Your Contribution
+          </div>
+          <div class="pub-authors">
+            <strong>Your Name</strong>, Co-author One, Co-author Two, Senior Author
+          </div>
+          <div class="pub-venue">
+            <em>Journal of Geophysical Research / AAAI / IGARSS</em>, 2025.
+          </div>
+          <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">DOI</a>
+            <a href="#">Code</a>
+            <a href="#">Slides</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Second publication example -->
+      <li class="pub-item">
+        <span class="pub-year">2024</span>
+        <div>
+          <div class="pub-title">
+            Another Paper Title: A Geospatial Deep Learning Approach
+          </div>
+          <div class="pub-authors">
+            <strong>Your Name</strong>, Co-author
+          </div>
+          <div class="pub-venue">
+            <em>Remote Sensing of Environment</em>, 2024.
+          </div>
+          <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">DOI</a>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ─── Projects ─── -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+
+      <!-- ✏️ EDIT: Replace href with your GitHub repo URLs.
+           Copy a .project-card block to add more. -->
+      <a class="project-card" href="https://github.com/your-username/project-one" target="_blank">
+        <div class="project-name">⬡ project-one</div>
+        <div class="project-desc">
+          Short description of what this project does and its research significance.
+        </div>
+        <div class="project-lang">
+          <span class="dot" style="background:#3572A5"></span> Python
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/your-username/project-two" target="_blank">
+        <div class="project-name">⬡ project-two</div>
+        <div class="project-desc">
+          A GIS analysis tool, visualization, or dataset related to your research.
+        </div>
+        <div class="project-lang">
+          <!-- Common language dot colors: Python #3572A5, R #198CE7, JS #f1e05a -->
+          <span class="dot" style="background:#198CE7"></span> R
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/your-username/project-three" target="_blank">
+        <div class="project-name">⬡ project-three</div>
+        <div class="project-desc">
+          Another project — perhaps a tutorial, benchmark dataset, or web tool.
+        </div>
+        <div class="project-lang">
+          <span class="dot" style="background:#f1e05a"></span> JavaScript
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ─── Contact ─── -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <!-- ✏️ EDIT: Update your contact details -->
+      <div class="contact-card">
+        <div class="contact-label">Email</div>
+        <div class="contact-value">
+          <a href="mailto:you@university.edu">you@university.edu</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">Office</div>
+        <div class="contact-value">Building Name, Room 000<br>City, State ZIP</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">
+          <a href="https://github.com/your-username" target="_blank">@your-username</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">Google Scholar</div>
+        <div class="contact-value">
+          <a href="https://scholar.google.com" target="_blank">View Profile →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <!-- ✏️ EDIT: Your name -->
+  <p>
+    © 2026 Your Name &nbsp;·&nbsp;
+    Built with <a href="https://pages.github.com" target="_blank">GitHub Pages</a> &nbsp;·&nbsp;
+    <a href="https://github.com/your-username/your-username.github.io">View source</a>
+  </p>
+</footer>
+
+</body>
+</html>
